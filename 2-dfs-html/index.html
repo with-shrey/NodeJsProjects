@@ -1,0 +1,35 @@
+<html>
+<body>
+<div id="div1" class="a">
+    <p id="p1">
+        <span id="span1"></span>
+        <span id="span2"></span>
+        <span id="span3"></span>
+    </p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+</div>
+<div id="div2" class="a">
+    <p id="d2-p1"></p>
+    <p id="d2-p2"></p>
+    <p id="d2-p3"></p>
+</div>
+</body>
+<script>
+    var nodes_traversal = []
+    function dfsTraversalofDom(node){
+        node.childNodes.forEach(function (value, key, parent) {
+            if (value.nodeType === Node.ELEMENT_NODE) {
+                console.log(value.id);
+                nodes_traversal.push(value.id)
+                dfsTraversalofDom(value)
+            }
+        })
+    }
+    const {body} = document
+    dfsTraversalofDom(body)
+    var result = document.createElement("p");
+    result.innerText = nodes_traversal.toString()
+    document.body.appendChild(result)
+</script>
+</html>
